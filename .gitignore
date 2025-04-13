@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+.Python
+.env
+.venv
+venv/
+ENV/
+env.bak/
+pip-log.txt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# System
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Docker
+*.tar
+*.img
+*.container
+*.pid
+docker-compose.override.yml
+
+# Hugging Face
+huggingface/
+*.cache/
+cache/
+hf_cache/
+tokenizer_config.json
+special_tokens_map.json
+
+# Gradio temp files
+gradio_cached_examples/
+
+# Pytorch/Torch
+*.pt
+*.pth
+*.ckpt
+
+# Environment Files
+.env*
+*.env
+
+# Other
+build/
+dist/
+*.spec
+*.bak
