@@ -42,7 +42,6 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
 # @title Default title text
 huggingface_token = "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" # @param {"type":"string","placeholder":"Get your access token from huggingface"}
-!pip install gradio Pillow transformers torch
 import gradio as gr
 from PIL import Image
 import torch
