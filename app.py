@@ -8,6 +8,8 @@ Original file is located at
 
 BASE CODE TO establish the workflow.
 """
+import torch
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 import requests
 from PIL import Image
@@ -16,18 +18,18 @@ from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
 model_checkpoint = "aryaumesh/english-to-telugu"
 
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base").to("cuda")
+model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base").to(device)
 
 img_url = 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/demo.jpg'
 raw_image = Image.open(requests.get(img_url, stream=True).raw).convert('RGB')
 
 # conditional image captioning prompt, do not touch this.
 text = "a photography of"
-inputs = processor(raw_image, text, return_tensors="pt").to("cuda")
+inputs = processor(raw_image, text, return_tensors="pt").to(device)
 
 out = model.generate(**inputs)
 
-inputs = processor(raw_image, return_tensors="pt").to("cuda")
+inputs = processor(raw_image, return_tensors="pt").to(device)
 
 out = model.generate(**inputs)
 result = processor.decode(out[0], skip_special_tokens=True)
@@ -97,4 +99,3 @@ iface = gr.Interface(
 
 if __name__ == "__main__":
     iface.launch(server_name="0.0.0.0", server_port=7860)
-
